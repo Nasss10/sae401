@@ -9,12 +9,12 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Se connecter</h2>
-            <h2 class="inactive underlineHover">S'inscrire</h2>
+            <a href="{{ path('app_login') }}"><h2 class="inactive underlineHover"> Se connecter</h2></a>
+            <h2 class="active underlineHover">S'inscrire</h2>
 
             <!-- Icon -->
             <div class="fadeIn first">
-                <img src="https://www.regledujeu.fr/wp-content/uploads/codenames-assassin.jpg" id="icon" alt="User Icon" />
+                <img src="{{ asset('images/profil1.png') }}" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
@@ -31,17 +31,18 @@
                 {{ form_row(registrationForm.agreeTerms, {
                     label: 'Je renonce à tous mes droits'
                 }) }}
-                <input type="submit" class="fadeIn fourth btn" value="Se connecter">
+                <!--<button type="submit" class="fadeIn fourth btn">S'inscrire</button>-->
+                <input type="submit" class="fadeIn fourth btn" value="S'inscrire'">
+                {{ form_end(registrationForm) }}
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <a class="underlineHover" href="#">Forgot Password?</a>
+                <a class="underlineHover" href="#">Mot de passe oublié?</a>
             </div>
 
         </div>
     </div>
-    {{ form_end(registrationForm) }}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -116,6 +117,7 @@
 
         h2.inactive {
             color: #cccccc;
+            cursor: pointer;
         }
 
         h2.active {
@@ -151,6 +153,7 @@
 
         input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
             background-color: #39ace7;
+            cursor: pointer;
         }
 
         input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -182,9 +185,9 @@
             border-radius: 5px 5px 5px 5px;
         }
 
-        input[type=text]:focus {
+        input[type=text]:focus, input[type=password]:focus {
             background-color: #fff;
-            border-bottom: 2px solid #5fbae9;
+            border-bottom: 2px solid #133955;
         }
 
         input[type=text]:placeholder {
@@ -304,7 +307,7 @@
         }
 
         #icon {
-            width:60%;
+            width:40%;
         }
 
         * {

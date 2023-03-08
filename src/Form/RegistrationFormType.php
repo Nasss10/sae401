@@ -32,7 +32,6 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password',
                     'class' => 'fadeIn third',
-                    'placeholder' => 'Mot de passe',
                     'id' => 'password'
                 ],
                 'constraints' => [
