@@ -18,7 +18,6 @@
             </div>
 
             <!-- Login Form -->
-            <form>
                 {{ form_start(registrationForm) }}
                 <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="login">-->
                 {{ form_row(registrationForm.email, {
@@ -32,14 +31,8 @@
                     label: 'Je renonce à tous mes droits'
                 }) }}
                 <!--<button type="submit" class="fadeIn fourth btn">S'inscrire</button>-->
-                <input type="submit" class="fadeIn fourth btn" value="S'inscrire'">
+                <input type="submit" class="fadeIn fourth btn" value="S'inscrire">
                 {{ form_end(registrationForm) }}
-            </form>
-
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="#">Mot de passe oublié?</a>
-            </div>
 
         </div>
     </div>
