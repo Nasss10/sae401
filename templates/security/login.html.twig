@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <h1>CODENAMES</h1>
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -82,6 +83,10 @@
             display:inline-block;
             margin: 40px 8px 10px 8px;
             color: #cccccc;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
         }
 
 
