@@ -20,6 +20,9 @@
             <!-- Login Form -->
                 {{ form_start(registrationForm) }}
                 <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="login">-->
+            {{ form_row(registrationForm.pseudo, {
+                label: 'Votre Pseudo'
+            }) }}
                 {{ form_row(registrationForm.email, {
                     label: 'Votre E-mail'
                 }) }}
