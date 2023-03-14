@@ -21,5 +21,24 @@
         <li>Your controller at <code><a href="{{ '/var/www/sae401NY/src/Controller/CompteController.php'|file_link(0) }}">src/Controller/CompteController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/var/www/sae401NY/templates/compte/index.html.twig'|file_link(0) }}">templates/compte/index.html.twig</a></code></li>
     </ul>
-</div>
+
+
+    </div>
+    {% for partie in parties %}
+        {% if partie.etatPartie == 'en attente' %}
+            <h2>les parties en attente d'un joueur</h2>
+            {{ partie.id }}
+            {{ partie.joueur1.email }}
+        {% else %}
+            <h2>tte les parties</h2>
+            {{ partie.id }}
+            {{ partie.joueur1.email }}
+            {{ partie.joueur2.email }}
+        {% endif %}
+    {% endfor %}
+    <div>
+
+
+
+    </div>
 {% endblock %}
