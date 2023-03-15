@@ -3,10 +3,6 @@
 {% block title %}Hello CompteController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 {% if app.user %}
     <div class="mb-3">
@@ -14,21 +10,13 @@
     </div>
 {% endif %}
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/sae401NY/src/Controller/CompteController.php'|file_link(0) }}">src/Controller/CompteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/sae401NY/templates/compte/index.html.twig'|file_link(0) }}">templates/compte/index.html.twig</a></code></li>
-    </ul>
-
-
+    
     </div>
     {% for partie in parties %}
         {% if partie.etatPartie == 'en attente' %}
             <h2>les parties en attente d'un joueur</h2>
             {{ partie.id }}
-            {{ partie.joueur1.email }}
+            {{ partie.joueur1.pseudo }}
         {% else %}
             <h2>tte les parties</h2>
             {{ partie.id }}
@@ -41,4 +29,7 @@
 
 
     </div>
+    <style>
+
+    </style>
 {% endblock %}
