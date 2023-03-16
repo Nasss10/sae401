@@ -28,21 +28,31 @@
             </div>
             </div>
             <div>
-            {% for partie in parties %}
                 <h2>les parties en attente d'un joueur</h2>
+            {% for partie in parties %}
                 {% if partie.etatPartie == 'en attente' %}
                     {{ partie.id }}
                     {{ partie.joueur1.pseudo }}
+                    {{ partie.nomDePartie }}
                 {% else %}
-                    <h2>tte les parties</h2>
-                    {{ partie.id }}
-                    {{ partie.joueur1.email }}
-                    {{ partie.joueur2.email }}
+
                 {% endif %}
             {% endfor %}
+                <h2>tte tes parties</h2>
+                {% for partie in parties %}
+                    {% if partie.etatPartie == 'en cours' %}
+                        {{ partie.id }}
+                        {{ partie.joueur1.email }}
+                    {% else %}
+
+                    {% endif %}
+                {% endfor %}
             </div>
         {% else %}
-        <h1>Connecte toi cousin</h1>
+            <div id="taille">
+                <h1 id="attention">Connecte toi ou inscris toi cousin !</h1>
+                <button onclick="window.location.href='{{ path('app_login') }}';">Retour à la page connexion</button>
+            </div>
         {% endif %}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins');
@@ -123,6 +133,24 @@
             font-size: 12px;
             text-align: center;
             margin-top: 20px;
+        }
+        #attention {
+            margin: auto;
+        }
+        #taille {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #taille button{
+            margin: 0 auto;
+            margin-bottom: ;
+            width: 200px;
+            padding: 10px;
+            border-radius: 0;
+            background-color: #fff;
+            border: none;
         }
 
     </style>
