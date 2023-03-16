@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\PartieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Security;
+
 
 #[ORM\Entity(repositoryClass: PartieRepository::class)]
 class Partie
@@ -13,20 +16,20 @@ class Partie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $tour_actuel_partie = null;
+    #[ORM\Column(nullable: true, options: ["default" => 1])]
+    private ?string $tour_actuel_partie = null;
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $etat_partie = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $tourjoueur = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomDePartie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'parties')]
+    #[ORM\ManyToOne(inversedBy: 'parties' )]
     private ?user $joueur1 = null;
 
     #[ORM\ManyToOne(inversedBy: 'parties')]
@@ -36,7 +39,13 @@ class Partie
     {
         return $this->id;
     }
+    public function __construct(Security $security)
+    {
+        $this->tour_actuel_partie = 1;
+        $this->etat_partie = "en attente";
+        $this->joueur1 = $security->getUser();
 
+    }
     public function getTourActuelPartie(): ?int
     {
         return $this->tour_actuel_partie;
