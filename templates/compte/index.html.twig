@@ -41,10 +41,14 @@
                 <h2>tte tes parties</h2>
                 {% for partie in parties %}
                     {% if partie.etatPartie == 'en cours' %}
-                        {{ partie.id }}
-                        {{ partie.joueur1.email }}
-                    {% else %}
-
+                        {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
+                            {{ partie.id }}
+                            {% if partie.joueur1.id == app.user.id %}
+                                {{ partie.joueur1.email }}
+                            {% else %}
+                                {{ partie.joueur2.email }}
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </div>
