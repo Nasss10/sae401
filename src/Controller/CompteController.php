@@ -29,23 +29,31 @@ class CompteController extends AbstractController
         ]);
     }
 
+
     #[Route('/update-partie/{partieId}', name: 'app_update_partie')]
     public function updatePartie(PartieRepository $partieRepository, Request $request, int $partieId): Response
     {
         $user = $this->getUser();
         $partie = $partieRepository->find($partieId);
 
-        if ($user && $partie && !$partie->getJoueur2()) {
-            $partie->setJoueur2($user);
-            $this->entityManager->persist($partie);
-            $this->entityManager->flush();
-            $this->addFlash('success', 'Vous avez rejoint la partie !');
+        if ($user && $partie) {
+            if ($user === $partie->getJoueur1() || $user === $partie->getJoueur2()) {
+                $this->addFlash('error', 'Impossible de rejoindre la partie, vous y êtes déjà !');
+            } else {
+                $partie->setJoueur2($user);
+                $partie->setEtatPartie("en cours");
+
+                $this->entityManager->persist($partie);
+                $this->entityManager->flush();
+                $this->addFlash('success', 'Vous avez rejoint la partie !');
+            }
         } else {
             $this->addFlash('error', 'Impossible de rejoindre la partie.');
         }
 
         return $this->redirectToRoute('app_compte');
     }
+
     #[Route('/upload-pdp', name: 'app_upload_pdp')]
     public function uploadPdp(Request $request): Response
     {
@@ -65,4 +73,5 @@ class CompteController extends AbstractController
 
         return $this->redirectToRoute('app_compte');
     }
+
 }

@@ -37,9 +37,14 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Télécharger</button>
                             </form>
+                            
                             <h2>les parties en attente d'un joueur</h2>
+
                             {% for partie in parties %}
                                 {% if partie.etatPartie == 'en attente' %}
+                                    {% for flashError in app.flashes('error') %}
+                                        <div class="alert alert-danger">{{ flashError }}</div>
+                                    {% endfor %}
                                     <div>
                                         <p>{{ partie.nomDePartie }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';">Rejoindre la partie</button>
