@@ -1,161 +1,178 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CompteController!{% endblock %}
+                {% block title %}Hello CompteController!{% endblock %}
 
-{% block body %}
-    {% if app.user %}
-        <div id="coteg">
-            <h1>Mind Melt</h1>
-            <img src="{{ asset('images/profil.png') }}" id="icon" alt="User Icon" />
-                <div class="mb-3">
-                    Bienvenue, {{ app.user.pseudo }} !
-                </div>
+                {% block body %}
+                    {% if app.user %}
+                        <div id="coteg">
+                            <h1>Mind Melt</h1>
+                            <img class="PdpJoueur"src="{{ asset('uploads/pdp/'~app.user.pdp) }}" />
+                            <div class="mb-3">
+                                Bienvenue, {{ app.user.pseudo }} !
+                            </div>
 
-            <a href="#">Mes statistiques</a>
-            <a href="#">Paramètres</a>
-            <a href="{{ path('app_login') }}">Déconnexion</a>
-            <hr>
-            <div id="espace">
-                <h4>Liste d'amis - 1</h4>
-                <div id="ami">
-                    <img src="{{ asset('images/profil.png') }}" id="icon" alt="User Icon" />
-                    <div id="amitexte">
-                    <p id="phpette">phpStorm</p>
-                    <p id="enligne">En ligne depuis 15h</p>
-                    </div>
-                </div>
-                <p id="laphrase">Tu n'as pas d'autres amis, il n'y a que phpStorm !</p>
-            </div>
-            </div>
-            <div>
-                <h2>les parties en attente d'un joueur</h2>
-            {% for partie in parties %}
-                {% if partie.etatPartie == 'en attente' %}
-                    {{ partie.id }}
-                    {{ partie.joueur1.pseudo }}
-                    {{ partie.nomDePartie }}
-                {% else %}
+                            <a href="#">Mes statistiques</a>
+                            <a href="#">Paramètres</a>
+                            <a href="{{ path('app_login') }}">Déconnexion</a>
+                            <hr>
+                            <div id="espace">
+                                <h4>Liste d'amis - 1</h4>
+                                <div id="ami">
+                                    <img src="{{ asset('images/profil.png') }}" id="icon" alt="User Icon" />
+                                    <div id="amitexte">
+                                        <p id="phpette">phpStorm</p>
+                                        <p id="enligne">En ligne depuis 15h</p>
+                                    </div>
+                                </div>
+                                <p id="laphrase">Tu n'as pas d'autres amis, il n'y a que phpStorm !</p>
+                            </div>
+                        </div>
+                        <div>
 
-                {% endif %}
-            {% endfor %}
-                <h2>tte tes parties</h2>
-                {% for partie in parties %}
-                    {% if partie.etatPartie == 'en cours' %}
-                        {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                            {{ partie.id }}
-                            {% if partie.joueur1.id == app.user.id %}
-                                {{ partie.joueur1.email }}
-                            {% else %}
-                                {{ partie.joueur2.email }}
-                            {% endif %}
-                        {% endif %}
+                            <h2>Télécharger une photo de profil</h2>
+                            <form method="post" action="{{ path('app_upload_pdp') }}" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="pdp">Photo de profil</label>
+                                    <input type="file" class="form-control-file" id="pdp" name="pdp">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Télécharger</button>
+                            </form>
+                            <h2>les parties en attente d'un joueur</h2>
+                            {% for partie in parties %}
+                                {% if partie.etatPartie == 'en attente' %}
+                                    <div>
+                                        <p>{{ partie.nomDePartie }} - {{ partie.joueur1.pseudo }}</p>
+                                        <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';">Rejoindre la partie</button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <h2>tte tes parties</h2>
+                            {% for partie in parties %}
+                                {% if partie.etatPartie == 'en cours' %}
+                                    {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
+                                        {{ partie.id }}
+                                        {% if partie.joueur1.id == app.user.id %}
+                                            {{ partie.joueur1.email }}
+                                        {% else %}
+                                            {{ partie.joueur2.email }}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div id="taille">
+                            <h1 id="attention">Connecte toi ou inscris toi cousin !</h1>
+                            <button onclick="window.location.href='{{ path('app_login') }}';">Retour à la page connexion</button>
+                        </div>
                     {% endif %}
-                {% endfor %}
-            </div>
-        {% else %}
-            <div id="taille">
-                <h1 id="attention">Connecte toi ou inscris toi cousin !</h1>
-                <button onclick="window.location.href='{{ path('app_login') }}';">Retour à la page connexion</button>
-            </div>
-        {% endif %}
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins');
-        body {
-            font-family: "Poppins", sans-serif;
-            display: flex;
-            margin: 0;
-            background-color: #1e1e1e;
-            color: #fff;
-        }
-        #coteg {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 25vw;
-            background-color: #252526;
-            border-right: #3e3e42 solid 1px;
-        }
-        #coteg img{
-            margin: auto;
-            width: 150px;
-        }
-        #coteg h1{
-            margin: auto;
-            color: #fff;
-        }
-        #coteg a{
-            margin: auto;
-            width: 150px;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            opacity: 0.7;
-         }
-        hr {
-            width: 70%;
-        }
-        #coteg a:hover{
-            color: #fff;
-            opacity: 1;
-        }
-        .mb-3 {
-            margin: auto;
-        }
-        #espace {
-            height: 200px;
-        }
-        #espace h4{
-            margin-left: 30px;
-        }
-        #ami {
-            display: flex;
-            margin: auto;
-            background-color: #1e1e1e;
-            height: 8vh;
-            width: 60%;
-            border-radius: 10px;
-        }
-        #ami p{
-            font-size: 13px;
-            margin: 0;
-        }
-        #ami img{
-            width: 50px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-        #enligne {
-            color: #fff;
-            opacity: 0.3;
-        }
-        #amitexte {
-            margin-top: 11px;
-        }
-        #laphrase {
-            color: #fff;
-            opacity: 0.5;
-            font-size: 12px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        #attention {
-            margin: auto;
-        }
-        #taille {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        #taille button{
-            margin: 0 auto;
-            margin-bottom: ;
-            width: 200px;
-            padding: 10px;
-            border-radius: 0;
-            background-color: #fff;
-            border: none;
-        }
+                    <style>
+                        @import url('https://fonts.googleapis.com/css?family=Poppins');
+                        body {
+                            font-family: "Poppins", sans-serif;
+                            display: flex;
+                            margin: 0;
+                            background-color: #1e1e1e;
+                            color: #fff;
+                        }
+                        .PdpJoueur{
+                            overflow:hidden;
+                            -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+                            border-radius:50px;
+                            width:90px;
+                            height:90px;
+                        }
+                        #coteg {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100vh;
+                            width: 25vw;
+                            background-color: #252526;
+                            border-right: #3e3e42 solid 1px;
+                        }
+                        #coteg img{
+                            margin: auto;
+                            width: 150px;
+                        }
+                        #coteg h1{
+                            margin: auto;
+                            color: #fff;
+                        }
+                        #coteg a{
+                            margin: auto;
+                            width: 150px;
+                            text-align: center;
+                            text-decoration: none;
+                            color: #fff;
+                            opacity: 0.7;
+                        }
+                        hr {
+                            width: 70%;
+                        }
+                        #coteg a:hover{
+                            color: #fff;
+                            opacity: 1;
+                        }
+                        .mb-3 {
+                            margin: auto;
+                        }
+                        #espace {
+                            height: 200px;
+                        }
+                        #espace h4{
+                            margin-left: 30px;
+                        }
+                        #ami {
+                            display: flex;
+                            margin: auto;
+                            background-color: #1e1e1e;
+                            height: 8vh;
+                            width: 60%;
+                            border-radius: 10px;
+                        }
+                        #ami p{
+                            font-size: 13px;
+                            margin: 0;
+                        }
+                        #ami img{
+                            width: 50px;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                        }
+                        #enligne {
+                            color: #fff;
+                            opacity: 0.3;
+                        }
+                        #amitexte {
+                            margin-top: 11px;
+                        }
+                        #laphrase {
+                            color: #fff;
+                            opacity: 0.5;
+                            font-size: 12px;
+                            text-align: center;
+                            margin-top: 20px;
+                        }
+                        #attention {
+                            margin: auto;
+                        }
+                        #taille {
+                            width: 100vw;
+                            height: 100vh;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        #taille button{
+                            margin: 0 auto;
+                            margin-bottom: ;
+                            width: 200px;
+                            padding: 10px;
+                            border-radius: 0;
+                            background-color: #fff;
+                            border: none;
+                        }
 
-    </style>
+                    </style>
+
 {% endblock %}

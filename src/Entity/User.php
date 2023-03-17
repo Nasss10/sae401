@@ -37,6 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdp = null;
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
@@ -150,6 +153,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getPdp(): ?string
+    {
+        return $this->pdp;
+    }
+
+    public function setPdp(?string $pdp): self
+    {
+        $this->pdp = $pdp;
 
         return $this;
     }
