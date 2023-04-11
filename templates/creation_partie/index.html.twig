@@ -3,11 +3,54 @@
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block body %}
-    <h1>Formulaire</h1>
-
+    <div id="flex">
+    <h1>Créer votre partie</h1>
+    <p>Tu es connecté en tant que {{ app.user.pseudo }}</p>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Créer</button>
     {{ form_end(form) }}
-    {{ app.user.id }}
+    <button onclick="window.location.href='{{ path('app_compte') }}';" class="btn2">Retour à la page compte</button>
+    </div>
+
+    <style>
+        body{
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        #flex {
+            margin: auto;
+        }
+        .btn {
+             margin: 20px 70px;
+             width: 100px;
+             padding: 10px;
+             border-radius: 0;
+             background-color: #fff;
+             border: none;
+             cursor: pointer;
+         }
+        .btn2 {
+            margin: 20px 50px;
+            width: 150px;
+            padding: 10px;
+            border-radius: 0;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            color: #fff;
+            background-color: #000;
+        }
+        .btn2:hover {
+             color: #fff;
+             background-color: #000;
+         }
+    </style>
 {% endblock %}
+
