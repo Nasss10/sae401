@@ -74,4 +74,21 @@ class CompteController extends AbstractController
         return $this->redirectToRoute('app_compte');
     }
 
+    #[Route('/create-compte', name: 'app_create_compte')]
+    public function createCompte(Request $request): Response
+    {
+        $user = $this->getUser();
+        $dateCreation = new \DateTime();
+
+        if ($user) {
+            $user->setDateCreationCompte($dateCreation);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'Compte créé avec succès !');
+        } else {
+            $this->addFlash('error', 'Impossible de créer un compte pour cet utilisateur.');
+        }
+
+        return $this->redirectToRoute('app_compte');
+    }
 }

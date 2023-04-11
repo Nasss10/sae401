@@ -27,6 +27,7 @@
                             </div>
                             <div class="mb-3">
                                 Bienvenue, {{ app.user.pseudo }} !
+
                             </div>
 
                             <a href="#">Mes statistiques</a>
@@ -46,7 +47,7 @@
                             </div>
                         </div>
                         <div id="coted">
-                            <button onclick="window.location.href='{{ path('app_creation_partie') }}';" class="btn">Créer votre partie</button>
+                            <button onclick="window.location.href='{{ path('app_new_partie') }}';" class="btn">Créer votre partie</button>
                             <h2>Les parties en attente d'un joueur</h2>
 <hr>
                             {% for partie in parties %}
@@ -54,9 +55,17 @@
                                     {% for flashError in app.flashes('error') %}
                                         <div class="alert alert-danger">{{ flashError }}</div>
                                     {% endfor %}
+<<<<<<< Updated upstream
                                     <div class="apanian">
                                         <p>{{ partie.nomDePartie }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
+=======
+                                    <div>
+                                        <p>Partie : {{ partie.nomDePartie }} - Créer par {{ partie.joueur1.pseudo }}<img class="PdpJoueurPartieAttente"src="{{ asset('uploads/pdp/'~partie.joueur1.pdp) }}" />
+                                        </p>
+                                        <br>
+                                        <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';">Rejoindre la partie</button>
+>>>>>>> Stashed changes
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -65,11 +74,15 @@
                             {% for partie in parties %}
                                 {% if partie.etatPartie == 'en cours' %}
                                     {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                                        {{ partie.id }}
+                                        Nom de la Partie : {{ partie.nomDePartie }} /////
                                         {% if partie.joueur1.id == app.user.id %}
-                                            {{ partie.joueur1.email }}
+                                            le joueur1{{ partie.joueur1.email }} /// le joueur2 :{{ partie.joueur2.email }} ////
+                                            <br>
+
                                         {% else %}
-                                            {{ partie.joueur2.email }}
+                                            le joueur1{{ partie.joueur1.email }} /// le joueur2 :{{ partie.joueur2.email }} ////
+                                            <br>
+
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}
@@ -90,13 +103,27 @@
                             background-color: #1e1e1e;
                             color: #fff;
                         }
+                        .PdpJoueurPartieAttente{
+                            overflow:hidden;
+                            -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+<<<<<<< Updated upstream
+                            border-radius:100px;
+                            width:150px;
+                            height:150px;
+=======
+                            border-radius:50px;
+                            width:50px;
+                            height:50px;
+                        }
                         .PdpJoueur{
                             overflow:hidden;
                             -webkit-border-radius:50px;
                             -moz-border-radius:50px;
-                            border-radius:100px;
-                            width:150px;
-                            height:150px;
+                            border-radius:70px;
+                            width:125px;
+                            height:125px;
+>>>>>>> Stashed changes
                         }
                         #coteg {
                             display: flex;
@@ -108,7 +135,6 @@
                         }
                         #coteg img{
                             margin: auto;
-                            width: 150px;
                         }
                         #coteg h1{
                             margin: auto;
