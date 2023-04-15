@@ -67,9 +67,14 @@ class Partie
     #[Groups(['treasure:read', 'treasure:write'])]
     private ?string $messages = null;
 
+    #[ORM\OneToMany(mappedBy: 'partie', targetEntity: Indice::class)]
+    #[Groups(['treasure:read', 'treasure:write'])]
+    private Collection $indices;
+    
     public function __construct()
     {
         $this->motParties = new ArrayCollection();
+        $this->indices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,6 +204,36 @@ class Partie
     public function setMessages(?string $messages): self
     {
         $this->messages = $messages;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Indice>
+     */
+    public function getIndices(): Collection
+    {
+        return $this->indices;
+    }
+
+    public function addIndex(Indice $index): self
+    {
+        if (!$this->indices->contains($index)) {
+            $this->indices->add($index);
+            $index->setPartieId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndex(Indice $index): self
+    {
+        if ($this->indices->removeElement($index)) {
+            // set the owning side to null (unless already changed)
+            if ($index->getPartieId() === $this) {
+                $index->setPartieId(null);
+            }
+        }
 
         return $this;
     }
