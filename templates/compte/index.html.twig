@@ -70,7 +70,6 @@
                             {% for partie in parties %}
                                 {% if partie.etatPartie == 'en cours' %}
                                     {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                                        Nom de la Partie : {{ partie.nomDePartie }} /////
                                         {% if partie.joueur1.id == app.user.id %}
                                             le joueur1{{ partie.joueur1.email }} /// le joueur2 :{{ partie.joueur2.email }} ////
                                             <br>
