@@ -54,7 +54,7 @@ class CompteController extends AbstractController
         return $this->redirectToRoute('app_compte');
     }
 
-    #[Route('/upload-pdp', name: 'app_upload_pdp')]
+    #[Route('/compte', name: 'app_upload_pdp')]
     public function uploadPdp(Request $request): Response
     {
         $user = $this->getUser();
