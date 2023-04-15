@@ -57,16 +57,12 @@
                                     {% endfor %}
 <<<<<<< Updated upstream
                                     <div class="apanian">
-                                        <p>{{ partie.nomDePartie }} - {{ partie.joueur1.pseudo }}</p>
+                                        <p>{{ partie.id }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
 =======
-                                    <div>
-                                        <p>Partie : {{ partie.nomDePartie }} - Créer par {{ partie.joueur1.pseudo }}<img class="PdpJoueurPartieAttente"src="{{ asset('uploads/pdp/'~partie.joueur1.pdp) }}" />
-                                        </p>
-                                        <br>
-                                        <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';">Rejoindre la partie</button>
+                                    
 >>>>>>> Stashed changes
-                                    </div>
+                                    
                                 {% endif %}
                             {% endfor %}
                             <h2>Toutes tes parties</h2>
