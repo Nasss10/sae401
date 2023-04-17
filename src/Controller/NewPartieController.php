@@ -31,7 +31,7 @@ class NewPartieController extends AbstractController
         //récupération du J2 depuis le formulaire
 
         $partie->setTourJoueur($joueur1);//mettre $this->getUser()
-        $partie->setEtatPartie('en cours');
+        $partie->setEtatPartie('en attente');
         $partie->setVictoire(false);
 
         $partieRepository->save($partie,true);
