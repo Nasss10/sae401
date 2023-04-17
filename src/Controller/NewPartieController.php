@@ -96,7 +96,7 @@ class NewPartieController extends AbstractController
             $mp->setTrouve(false);
             $motPartieRepository->save($mp,true);
         }
-        return new Response(); // ajout de cette ligne pour renvoyer une réponse vide
+        return $this->redirectToRoute('/new/partie');
 
     }
 }
