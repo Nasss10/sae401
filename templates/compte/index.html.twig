@@ -55,14 +55,12 @@
                                     {% for flashError in app.flashes('error') %}
                                         <div class="alert alert-danger">{{ flashError }}</div>
                                     {% endfor %}
-<<<<<<< Updated upstream
                                     <div class="apanian">
                                         <p>{{ partie.id }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
-=======
+
                                     
->>>>>>> Stashed changes
-                                    
+
                                 {% endif %}
                             {% endfor %}
                             <h2>Toutes tes parties</h2>
