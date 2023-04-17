@@ -96,7 +96,7 @@ class NewPartieController extends AbstractController
             $mp->setTrouve(false);
             $motPartieRepository->save($mp,true);
         }
-        return $this->redirectToRoute('/new/partie');
+        return $this->redirectToRoute('app_new_partie');
 
     }
 }
