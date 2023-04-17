@@ -97,8 +97,12 @@ class NewPartieController extends AbstractController
                 $mp->setTrouve(false);
                 $motPartieRepository->save($mp, true);
             }
-            return new Response(); // ajout de cette ligne pour renvoyer une réponse vide
 
+            return $this->redirectToRoute('app_jouer_partie', [ 'id' => $partie->getId() ]);
         }
+
+        return $this->render('new_partie/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
