@@ -17,7 +17,6 @@ class PartieType extends AbstractType
             ->add('tourduj')
             ->add('tourpartie')
             ->add('messages')
-            ->add('nom')
             ->add('joueur1')
             ->add('joueur2')
             ->add('tourJoueur')

@@ -71,8 +71,7 @@ class Partie
     #[Groups(['treasure:read', 'treasure:write'])]
     private Collection $indices;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+
     
     public function __construct()
     {
@@ -241,15 +240,5 @@ class Partie
         return $this;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
 
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
 }
