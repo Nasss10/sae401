@@ -50,12 +50,13 @@
                             <button onclick="window.location.href='{{ path('app_new_partie') }}';" class="btn">Créer votre partie</button>
                             <h2>Les parties en attente d'un joueur</h2>
 <hr>
+                            <div class="apanian">
+
                             {% for partie in parties %}
                                 {% if partie.etatPartie == 'en attente' %}
                                     {% for flashError in app.flashes('error') %}
                                         <div class="alert alert-danger">{{ flashError }}</div>
                                     {% endfor %}
-                                    <div class="apanian">
                                         <h1>Voici une partie en attente d'un 2ème joueur</h1>
                                         <p>{{ partie.id }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
