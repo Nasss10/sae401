@@ -56,6 +56,7 @@
                                         <div class="alert alert-danger">{{ flashError }}</div>
                                     {% endfor %}
                                     <div class="apanian">
+                                        <h1>Voici une partie en attente d'un 2ème joueur</h1>
                                         <p>{{ partie.id }} - {{ partie.joueur1.pseudo }}</p>
                                         <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
 
