@@ -45,7 +45,17 @@ class CompteController extends AbstractController
 
                 $this->entityManager->persist($partie);
                 $this->entityManager->flush();
-                $this->addFlash('success', 'Vous avez rejoint la partie !');
+
+                // Construire l'URL de la partie en fonction de l'utilisateur connecté
+                $url = 'https://mmi21a11.sae401.ovh/jeu/' . $partie->getId() . '/';
+                if ($user === $partie->getJoueur1()) {
+                    $url .= '1';
+                } else {
+                    $url .= '2';
+                }
+
+                // Rediriger l'utilisateur vers l'URL de la partie
+                return $this->redirect($url);
             }
         } else {
             $this->addFlash('error', 'Impossible de rejoindre la partie.');
@@ -53,6 +63,7 @@ class CompteController extends AbstractController
 
         return $this->redirectToRoute('app_compte');
     }
+
 
     #[Route('/upload-pdp', name: 'app_upload_pdp')]
     public function uploadPdp(Request $request): Response
