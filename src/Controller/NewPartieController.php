@@ -24,11 +24,6 @@ class NewPartieController extends AbstractController
         UserRepository $userRepository
     ): Response
     {
-        $form = $this->createForm(PartieType::class);
-
-        return $this->render('new_partie/index.html.twig', [
-            'form' => $form->createView(),
-        ]);
         $joueur1 = $joueur2 = $userRepository->find(1);
         $partie = new Partie();
         $partie->setJoueur1($joueur1); //mettre $this->getUser()
