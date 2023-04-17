@@ -12,7 +12,7 @@
                 <polyline points="8 1 12 5 8 9"></polyline>
             </svg>
         </button>
-        <button class="cta">
+        <button class="cta" onclick="window.open('{{asset('images/Codenames_rulebook_FR-web_2018.pdf')}}', '_blank');">
             <span>Règles</span>
         </button>
     </div>
@@ -50,6 +50,7 @@
             border: none;
             background: none;
             margin-bottom: 20px;
+            cursor: pointer;
         }
 
         .cta:before {

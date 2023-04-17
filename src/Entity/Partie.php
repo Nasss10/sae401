@@ -70,6 +70,9 @@ class Partie
     #[ORM\OneToMany(mappedBy: 'partie', targetEntity: Indice::class)]
     #[Groups(['treasure:read', 'treasure:write'])]
     private Collection $indices;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
     
     public function __construct()
     {
@@ -234,6 +237,18 @@ class Partie
                 $index->setPartieId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }
