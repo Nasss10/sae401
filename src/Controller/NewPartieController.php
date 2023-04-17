@@ -96,7 +96,7 @@ class NewPartieController extends AbstractController
             $mp->setTrouve(false);
             $motPartieRepository->save($mp,true);
         }
-        return $this->redirectToRoute('app_new_partie');
+        return $this->redirect('https://mmi21a11.sae401.ovh/jeu/'.$partie->getId().'/1');
 
     }
 }
