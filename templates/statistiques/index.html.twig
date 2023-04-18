@@ -1,0 +1,331 @@
+{% extends 'base.html.twig' %}
+
+                {% block title %}Hello CompteController!{% endblock %}
+
+                {% block body %}
+                    {% if app.user %}
+<div id="coteg">
+    <h1>Mind Melt</h1>
+    {% if app.user.pdp %}
+        <img class="PdpJoueur"src="{{ asset('uploads/pdp/'~app.user.pdp) }}" />
+    {% else %}
+        <img class="PdpJoueur"src="{{ asset('images/default-profile.png') }}" />
+    {% endif %}
+    <div id="photodeprofil">
+        {% if app.user.pdp %}
+            <p>Changer ma photo de profil</p>
+        {% else %}
+            <p>Ajouter une photo de profil</p>
+        {% endif %}
+        <form method="post" action="{{ path('app_upload_pdp') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" class="form-control-file" id="pdp" name="pdp">
+                <span id="file-select-button" class="browse"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Valider l'ajout</button>
+        </form>
+    </div>
+    <div class="mb-3">
+        Bienvenue, {{ app.user.pseudo }} !
+
+    </div>
+
+    <a href="#{{ path('app_compte') }}">Les Parties</a>
+    <a href="#">Paramètres</a>
+    <a href="{{ path('app_logout') }}">Déconnexion</a>
+    <hr>
+    <div id="espace">
+        <h4>Liste d'amis - 1</h4>
+        <div id="ami">
+            <img src="{{ asset('images/profil.png') }}" id="icon" alt="User Icon" />
+            <div id="amitexte">
+                <p id="phpette">phpStorm</p>
+                <p id="enligne">En ligne depuis 15h</p>
+            </div>
+        </div>
+        <p id="laphrase">Tu n'as pas d'autres amis, il n'y a que phpStorm !</p>
+    </div>
+</div>
+<div id="coted">
+
+    <div class="apanian">
+
+        {% for partie in parties %}
+            {% if partie.victoire == 'oui' %}
+
+                <h1>Voici la liste de vos parties gagnées</h1>
+                <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur1.pseudo }} à été gagnée</p>
+
+
+
+            {% endif %}
+        {% endfor %}
+        <h2>Voici la liste de vos parties gagnées</h2>
+        <hr>
+        {% for partie in parties %}
+            {% if partie.victoire == 'non' %}
+                <h1>Voici la liste de vos parties gagnées</h1>
+                <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur1.pseudo }} à été perdue</p>
+
+
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+        <div id="taille">
+            <h1 id="attention">Merci de bien vouloir t'inscrire ou te connecter !</h1>
+            <button onclick="window.location.href='{{ path('app_login') }}';">Retour à la page connexion</button>
+        </div>
+    {% endif %}
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins');
+        body {
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            margin: 0;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        .PdpJoueurPartieAttente{
+            overflow:hidden;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            <<<<<<< Updated upstream
+            border-radius:100px;
+            width:150px;
+            height:150px;
+        =======
+        border-radius:50px;
+            width:50px;
+            height:50px;
+        }
+        .PdpJoueur{
+            overflow:hidden;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            border-radius:70px;
+            width:125px;
+            height:125px;
+        >>>>>>> Stashed changes
+        }
+        #coteg {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 25vw;
+            background-color: #252526;
+            border-right: #3e3e42 solid 1px;
+        }
+        #coteg img{
+            margin: auto;
+        }
+        #coteg h1{
+            margin: auto;
+            color: #fff;
+        }
+        #coteg a{
+            margin: auto;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            opacity: 0.7;
+        }
+        hr {
+            width: 70%;
+        }
+        #coteg a:hover{
+            color: #fff;
+            opacity: 1;
+        }
+        .mb-3 {
+            margin: auto;
+        }
+        #espace {
+            height: 200px;
+        }
+        #espace h4{
+            margin-left: 30px;
+        }
+        #ami {
+            display: flex;
+            margin: auto;
+            background-color: #1e1e1e;
+            height: 8vh;
+            width: 60%;
+            border-radius: 10px;
+        }
+        #ami p{
+            font-size: 13px;
+            margin: 0;
+        }
+        #ami img{
+            width: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        #enligne {
+            color: #fff;
+            opacity: 0.3;
+        }
+        #amitexte {
+            margin-top: 11px;
+        }
+        #laphrase {
+            color: #fff;
+            opacity: 0.5;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #attention {
+            margin: auto;
+        }
+        #taille {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #taille button{
+            margin: 0 auto;
+            margin-bottom: 150px;
+            width: 200px;
+            padding: 10px;
+            border-radius: 0;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #photodeprofil {
+            display: flex;
+            flex-direction: column;
+        }
+        #photodeprofil form{
+            margin: auto;
+        }
+        #photodeprofil p{
+            margin: auto;
+        }
+        #photodeprofil form button{
+            background-color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #photodeprofil form button:hover{
+            background-color: #000;
+            color: #fff ;
+        }
+        .form-group {
+
+        }
+        .browse {
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: #000;
+            border-radius: 50px;
+            padding: 4px 10px;
+            position: absolute;
+            top: 27%;
+            left: 14%;
+        }
+        .browse:hover {
+            color: #000;
+            background-color: #fff;
+        }
+        input[type='file']{
+            position: absolute;
+            margin-top: 3px;
+            margin-left: 3px;
+            height: 1px;
+            width: 1px;
+            z-index: -5;
+        }
+        #coted {
+            margin: auto;
+        }
+        .btn {
+            margin: 0 auto;
+            width: 150px;
+            padding: 10px;
+            border-radius: 0;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            color: #fff;
+            background-color: #000;
+        }
+        .rejj {
+            margin-top:40px;
+            position: relative;
+            font-size: 17px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1em 2.5em;
+            width: 670px;
+            display: inline-block;
+            border-radius: 6em;
+            transition: all .2s;
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+            color: black;
+            background-color: white;
+        }
+
+        .rejj:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .rejj:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .rejj::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s;
+        }
+
+        .rejj::after {
+            background-color: #fff;
+        }
+
+        .rejj:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+        .apanian {
+            background-color: #252526;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: #3e3e42 solid 1px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+    </style>
+    <script>
+        $('#file-select-button').click(function(){
+            $('input').click();
+        });
+    </script>
+
+    {% endblock %}
+
