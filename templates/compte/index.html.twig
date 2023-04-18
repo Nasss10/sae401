@@ -65,17 +65,17 @@
 
                                 {% endif %}
                             {% endfor %}
-                            <h2>Toutes tes parties</h2>
+                            <h2>Voici les parties commencées où tu es présent</h2>
                             <hr>
                             {% for partie in parties %}
                                 {% if partie.etatPartie == 'en cours' %}
                                     {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
                                         {% if partie.joueur1.id == app.user.id %}
-                                            le joueur1{{ partie.joueur1.email }} /// le joueur2 :{{ partie.joueur2.email }} ////
+                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }}
                                             <br>
 
                                         {% else %}
-                                            le joueur1{{ partie.joueur1.email }} /// le joueur2 :{{ partie.joueur2.email }} ////
+                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }}
                                             <br>
 
                                         {% endif %}
