@@ -49,8 +49,9 @@
 <div id="coted">
 
     <div class="apanian">
+        <h1>Voici la liste des parties gagnées</h1>
+
         {% for partie in parties %}
-            <h1>Voici la liste des parties gagnées</h1>
 
             {% if partie.victoire == 'oui' %}
 
@@ -68,8 +69,9 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
+        <h1>Voici la liste des parties perdues</h1>
+
         {% for partie in parties %}
-            <h1>Voici la liste des parties perdues</h1>
 
             {% if partie.victoire == 'non' %}
 
