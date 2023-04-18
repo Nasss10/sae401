@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $pseudo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $pdp = null;
+    private ?string $pdp = '643e4a36799c1.jpg';
 
 
 
