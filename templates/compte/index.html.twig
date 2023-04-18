@@ -71,11 +71,11 @@
                                 {% if partie.etatPartie == 'en cours' %}
                                     {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
                                         {% if partie.joueur1.id == app.user.id %}
-                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} <p>Vous êtes au tour {{ partie.tourpartie }}</p>
+                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
                                             <br>
 
                                         {% else %}
-                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} <p>Vous êtes au tour {{ partie.tourpartie }}</p>
+                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
                                             <br>
 
                                         {% endif %}
