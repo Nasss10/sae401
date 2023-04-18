@@ -49,25 +49,16 @@
 <div id="coted">
 
     <div class="apanian">
-
         {% for partie in parties %}
-            {% if partie.victoire == 'oui' %}
-
-                <h1>Voici la liste de vos parties gagnées</h1>
-                <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur1.pseudo }} à été gagnée</p>
-
-
-
-            {% endif %}
-        {% endfor %}
-        <h2>Voici la liste de vos parties gagnées</h2>
-        <hr>
-        {% for partie in parties %}
-            {% if partie.victoire == 'non' %}
-                <h1>Voici la liste de vos parties gagnées</h1>
-                <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur1.pseudo }} à été perdue</p>
-
-
+            {% if partie.joueur1_id == idUser or partie.joueur2_id == idUser %}
+                {% if partie.victoire == 'oui' %}
+                    <h1>Voici la liste de vos parties gagnées</h1>
+                    <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur2.pseudo }} a été gagnée</p>
+                {% endif %}
+                {% if partie.victoire == 'non' %}
+                    <h1>Voici la liste de vos parties perdues</h1>
+                    <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur2.pseudo }} a été perdue</p>
+                {% endif %}
             {% endif %}
         {% endfor %}
     </div>
