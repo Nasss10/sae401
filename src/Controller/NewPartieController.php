@@ -26,7 +26,7 @@ class NewPartieController extends AbstractController
     {
         $joueur1 = $joueur2 = $userRepository->find(1);
         $partie = new Partie();
-        $partie->setJoueur1($joueur1); //mettre $this->getUser()
+        $partie->setJoueur1($this->getUser());
 
         //récupération du J2 depuis le formulaire
 

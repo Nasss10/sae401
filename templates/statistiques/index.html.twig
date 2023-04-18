@@ -50,9 +50,11 @@
 
     <div class="apanian">
         {% for partie in parties %}
+            <h1>Voici la liste des parties gagnées</h1>
+
             {% if partie.victoire == 'oui' %}
+
                 {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                    <h1>Voici la liste des parties gagnées</h1>
                     {% if partie.joueur1.id == app.user.id %}
 
                         Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été gagnée.
@@ -67,9 +69,11 @@
             {% endif %}
         {% endfor %}
         {% for partie in parties %}
+            <h1>Voici la liste des parties perdues</h1>
+
             {% if partie.victoire == 'non' %}
+
                 {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                    <h1>Voici la liste des parties perdues</h1>
                     {% if partie.joueur1.id == app.user.id %}
 
                         Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été perdu.
