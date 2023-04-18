@@ -50,14 +50,33 @@
 
     <div class="apanian">
         {% for partie in parties %}
-            {% if partie.etatPartie == 'en cours' %}
+            {% if partie.victoire == 'oui' %}
                 {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
+                    <h1>Voici la liste des parties gagnées</h1>
                     {% if partie.joueur1.id == app.user.id %}
-                        le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
+
+                        Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été gagnée.
                         <br>
 
                     {% else %}
-                        le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
+                        Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été perdu.
+                        <br>
+
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% for partie in parties %}
+            {% if partie.victoire == 'non' %}
+                {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
+                    <h1>Voici la liste des parties perdues</h1>
+                    {% if partie.joueur1.id == app.user.id %}
+
+                        Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été perdu.
+                        <br>
+
+                    {% else %}
+                        Voici la partie numéro {{ partie.id }} , joué par  {{ partie.joueur1.pseudo }} et  {{ partie.joueur2.pseudo }} à été perdu.
                         <br>
 
                     {% endif %}
