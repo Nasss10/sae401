@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div id="coted">
-                            <button onclick="window.location.href='{{ path('app_new_partie') }}';" class="btn">Créer votre partie</button>
+                            <button onclick="window.location.href='{{ path('app_new_partie') }}';" class="btn55">Créer votre partie</button>
                             <h2>Les parties en attente d'un joueur</h2>
 <hr>
                             <div class="apanian">
@@ -260,6 +260,19 @@
                             margin: auto;
                         }
                         .btn {
+                            margin: 0 auto;
+                            width: 150px;
+                            padding: 10px;
+                            border-radius: 0;
+                            background-color: #fff;
+                            border: none;
+                            cursor: pointer;
+                        }
+                        .btn:hover {
+                            color: #fff;
+                            background-color: #000;
+                        }
+                        .btn {
                             position: relative;
                             font-size: 17px;
                             text-transform: uppercase;
@@ -286,7 +299,7 @@
                             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
                         }
 
-                        .btn::after {
+                        .btn55::after {
                             content: "";
                             display: inline-block;
                             height: 100%;
@@ -299,11 +312,11 @@
                             transition: all .4s;
                         }
 
-                        .btn::after {
+                        .btn55::after {
                             background-color: #fff;
                         }
 
-                        .btn:hover::after {
+                        .btn55:hover::after {
                             transform: scaleX(1.4) scaleY(1.6);
                             opacity: 0;
                         }
