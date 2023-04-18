@@ -50,8 +50,7 @@
 
     <div class="apanian">
         {% for partie in parties %}
-            {% if partie.joueur1_id == idUser or partie.joueur2_id == idUser %}
-                {% if partie.victoire == 'oui' %}
+            {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}                {% if partie.victoire == 'oui' %}
                     <h1>Voici la liste de vos parties gagnées</h1>
                     <p>La partie numéro {{ partie.id }} - jouée par {{ partie.joueur1.pseudo }} et {{ partie.joueur2.pseudo }} a été gagnée</p>
                 {% endif %}
