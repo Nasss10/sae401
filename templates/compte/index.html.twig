@@ -73,17 +73,20 @@
                                             <div>
                                                 {% if partie.joueur1.id == app.user.id %}
                                                     <p>Vous jouez contre {{ partie.joueur2.pseudo }}. C'est votre tour.</p>
-                                                    <a href="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 1}) }}">Rejoindre la partie</a>
+                                                    <form action="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 1}) }}" method="post">
+                                                        <button type="submit">Rejoindre la partie</button>
+                                                    </form>
                                                 {% else %}
                                                     <p>Vous jouez contre {{ partie.joueur1.pseudo }}. C'est votre tour.</p>
-                                                    <a href="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 2}) }}">Rejoindre la partie</a>
+                                                    <form action="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 2}) }}" method="post">
+                                                        <button type="submit">Rejoindre la partie</button>
+                                                    </form>
                                                 {% endif %}
                                             </div>
                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}
-
-                            </div>
+                        </div>
                     {% else %}
                         <div id="taille">
                             <h1 id="attention">Merci de bien vouloir t'inscrire ou te connecter !</h1>
