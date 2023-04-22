@@ -72,6 +72,8 @@
                                     {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
                                         {% if partie.joueur1.id == app.user.id %}
                                             le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
+                                            <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
+
                                             <br>
 
                                         {% else %}
