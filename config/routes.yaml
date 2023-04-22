@@ -8,3 +8,8 @@ controllers:
 update_partie:
     path: '/update-partie/{partieId}'
     controller: 'App\Controller\CompteController@updatePartie'
+
+rejoindre_partie:
+    path: '/jeu/{id}/{numJoueur}'
+    controller: 'App\Controller\CompteController@rejoindrePartie'
+

@@ -29,6 +29,15 @@ class CompteController extends AbstractController
         ]);
     }
 
+    public function rejoindrePartie($id, $numJoueur)
+    {
+        // Rediriger l'utilisateur vers la page de jeu appropriée
+        return $this->redirectToRoute('nom_de_la_route_vers_la_page_de_jeu', [
+            'id' => $id,
+            'numJoueur' => $numJoueur,
+        ]);
+    }
+
 
     #[Route('/update-partie/{partieId}', name: 'app_update_partie')]
     public function updatePartie(PartieRepository $partieRepository, Request $request, int $partieId): Response

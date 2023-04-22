@@ -67,26 +67,23 @@
                             {% endfor %}
                             <h2>Voici les parties commencées où tu es présent</h2>
                             <hr>
-                            {% for partie in parties %}
-                                {% if partie.etatPartie == 'en cours' %}
-                                    {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
-                                        {% if partie.joueur1.id == app.user.id %}
-                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
-                                            <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
-
-                                            <br>
-
-                                        {% else %}
-                                            le joueur1 : {{ partie.joueur1.pseudo }} // le joueur2 : {{ partie.joueur2.pseudo }} Vous êtes au tour {{ partie.tourpartie }}
-                                            <button onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
-
-                                            <br>
-
+                                {% for partie in parties %}
+                                    {% if partie.etatPartie == 'en cours' %}
+                                        {% if partie.joueur1.id == app.user.id or partie.joueur2.id == app.user.id %}
+                                            <div>
+                                                {% if partie.joueur1.id == app.user.id %}
+                                                    <p>Vous jouez contre {{ partie.joueur2.pseudo }}. C'est votre tour.</p>
+                                                    <a href="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 1}) }}">Rejoindre la partie</a>
+                                                {% else %}
+                                                    <p>Vous jouez contre {{ partie.joueur1.pseudo }}. C'est votre tour.</p>
+                                                    <a href="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 2}) }}">Rejoindre la partie</a>
+                                                {% endif %}
+                                            </div>
                                         {% endif %}
                                     {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+                                {% endfor %}
+
+                            </div>
                     {% else %}
                         <div id="taille">
                             <h1 id="attention">Merci de bien vouloir t'inscrire ou te connecter !</h1>
