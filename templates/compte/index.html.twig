@@ -77,7 +77,7 @@
                                                         <button class="rejjjj" type="submit">Rejoindre la partie</button>
                                                     </form>
                                                 {% else %}
-                                                    <p>Vous jouez contre {{ partie.joueur1.pseudo }}. C'est votre tour.</p>
+                                                    <p>Vous jouez contre {{ partie.joueur1.pseudo }}. C'est votre tour. <button class="rejjjj" type="submit">Rejoindre la partie</button></p>
                                                     <form action="{{ path('rejoindre_partie', {'id': partie.id, 'numJoueur': 2}) }}" method="post">
                                                         <button class="rejjjj" type="submit">Rejoindre la partie</button>
                                                     </form>
