@@ -58,8 +58,8 @@
                                         <div class="alert alert-danger">{{ flashError }}</div>
                                     {% endfor %}
                                         <h1>Voici une partie en attente d'un 2ème joueur</h1>
-                                        <p>{{ partie.id }} - {{ partie.joueur1.pseudo }}</p>
-                                        <button class="rejjjj" onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button>
+                                        <p>{{ partie.id }} - {{ partie.joueur1.pseudo }} <button class="rejjjj" onclick="window.location.href='{{ path('update_partie', {'partieId': partie.id}) }}';" class="btn">Rejoindre la partie</button></p>
+
 
                                     
 
